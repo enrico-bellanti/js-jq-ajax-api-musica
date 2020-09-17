@@ -12,44 +12,56 @@
 
 
 $(document).ready(function() {
-
-  $("#select_genre option").click(function() {
-    var genre = $(this).val();
-    console.log(genre);
-  });
-
-	$.ajax({
+  // appena entro nella pagina mostro gli album della select di default
+  var genreAlbum = $("#select_genre option").val();
+  console.log(genreAlbum);
+  $.ajax({
     "url": "https://flynn.boolean.careers/exercises/api/array/music",
     "method": "GET",
     "success": function(data, stato) {
-      var infoCd = data.response;
-      insertCdInfos(infoCd);
+      var infoAlbum = data.response;
+      selectAlbum(infoAlbum, genreAlbum);
     },
     "error": function(richiesta, stato, errori) {
       alery("Attenzione errore");
     }
   });
 
+  // al click richiedi all'API solo gli album che hanno il genere selezionato
+  $("#select_genre option").click(function() {
+    // rimuovi i template della selezione precedente
+    $(".cds-container .cd").remove();
+    // salvo il valore genere selzionato in una variabile
+    var genreAlbum = $(this).val();
+
+  	$.ajax({
+      "url": "https://flynn.boolean.careers/exercises/api/array/music",
+      "method": "GET",
+      "success": function(data, stato) {
+        var infoAlbum = data.response;
+        selectAlbum(infoAlbum, genreAlbum);
+      },
+      "error": function(richiesta, stato, errori) {
+        alery("Attenzione errore");
+      }
+    });
+  });
+
 // end ready document
 });
 
-// {
-//     "poster": "https://www.onstageweb.com/wp-content/uploads/2018/09/bon-jovi-new-jersey.jpg",
-//     "title": "New Jersey",
-//     "author": "Bon Jovi",
-//     "genre": "Rock",
-//     "year": "1988"
-// },
-
-function insertCdInfos(details) {
+function selectAlbum(details, genreSelected) {
   // copia il template
   var source = $("#cd-template").html();
   var template = Handlebars.compile(source);
   // ottieni le info contenute nella API e inseriscile nel template
   for (var i = 0; i < details.length; i++) {
-    var context = details[i];
-    var html = template(context);
-    $(".cds-container").append(html);
+    var genre = details[i].genre.toLowerCase();
+    if (genre == genreSelected) {
+      var context = details[i];
+      var html = template(context);
+      $(".cds-container").append(html);
+    }
   }
 
 }
