@@ -12,9 +12,9 @@
 
 
 $(document).ready(function() {
+  $("#select_genre").val("all");
   // appena entro nella pagina mostro gli album della select di default
   var genreAlbum = $("#select_genre option").val();
-  console.log(genreAlbum);
   $.ajax({
     "url": "https://flynn.boolean.careers/exercises/api/array/music",
     "method": "GET",
@@ -33,6 +33,7 @@ $(document).ready(function() {
     $(".cds-container .cd").remove();
     // salvo il valore genere selzionato in una variabile
     var genreAlbum = $(this).val();
+    console.log(genreAlbum);
 
   	$.ajax({
       "url": "https://flynn.boolean.careers/exercises/api/array/music",
@@ -57,15 +58,32 @@ function selectAlbum(details, genreSelected) {
   // ottieni le info contenute nella API e inseriscile nel template
   for (var i = 0; i < details.length; i++) {
     var genre = details[i].genre.toLowerCase();
-    if (genreSelected == "all") {
-      var context = details[i];
-      var html = template(context);
-      $(".cds-container").append(html);
-    }else if (genreSelected == genre) {
+    if (genreSelected == genre || genreSelected == "all") {
       var context = details[i];
       var html = template(context);
       $(".cds-container").append(html);
     }
+
   }
 
 }
+
+// function selectAlbum(details, genreSelected) {
+//   // copia il template
+//   var source = $("#cd-template").html();
+//   var template = Handlebars.compile(source);
+//   // ottieni le info contenute nella API e inseriscile nel template
+//   for (var i = 0; i < details.length; i++) {
+//     var genre = details[i].genre.toLowerCase();
+//     if (genreSelected == "all") {
+//       var context = details[i];
+//       var html = template(context);
+//       $(".cds-container").append(html);
+//     }else if (genreSelected == genre) {
+//       var context = details[i];
+//       var html = template(context);
+//       $(".cds-container").append(html);
+//     }
+//   }
+//
+// }
