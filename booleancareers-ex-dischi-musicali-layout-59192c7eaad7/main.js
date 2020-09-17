@@ -12,9 +12,9 @@
 
 
 $(document).ready(function() {
-  $("#select_genre").val("all");
+  $("#select_genre").val("Genre");
   // appena entro nella pagina mostro gli album della select di default
-  var genreAlbum = $("#select_genre option").val();
+  var genreAlbum = "all";
   $.ajax({
     "url": "https://flynn.boolean.careers/exercises/api/array/music",
     "method": "GET",

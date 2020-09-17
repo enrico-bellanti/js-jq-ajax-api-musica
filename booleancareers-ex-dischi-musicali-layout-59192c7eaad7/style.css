@@ -24,6 +24,7 @@ header {
 header .nav_top{
   display: flex;
   justify-content: space-between;
+  padding: 0 20px;
 }
 header img {
     height: 50px;
@@ -55,7 +56,7 @@ header img {
 }
 
 .cd img {
-    max-width: 100%;
+    width: 160px;
 }
 
 .cd h3 {
