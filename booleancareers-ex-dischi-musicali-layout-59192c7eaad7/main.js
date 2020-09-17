@@ -13,6 +13,11 @@
 
 $(document).ready(function() {
 
+  $("#select_genre option").click(function() {
+    var genre = $(this).val();
+    console.log(genre);
+  });
+
 	$.ajax({
     "url": "https://flynn.boolean.careers/exercises/api/array/music",
     "method": "GET",

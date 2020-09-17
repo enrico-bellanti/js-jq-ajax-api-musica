@@ -10,9 +10,18 @@
     </head>
     <body>
         <header>
-            <div class="container">
-                <img src="logo.png" alt="logo" />
-            </div>
+          <div class="nav_top container">
+              <img src="logo.png" alt="logo" />
+              <div class="select_container">
+                <label for="genre">Filtra genere musicale</label>
+                <select id="select_genre" name="genre">
+                  <option value="pop">Pop</option>
+                  <option value="jazz">Jazz</option>
+                  <option value="metal">Metal</option>
+                  <option value="rock">Rock</option>
+                </select>
+              </div>
+          </div>
         </header>
 
         <div class="cds-container container">
