@@ -57,7 +57,11 @@ function selectAlbum(details, genreSelected) {
   // ottieni le info contenute nella API e inseriscile nel template
   for (var i = 0; i < details.length; i++) {
     var genre = details[i].genre.toLowerCase();
-    if (genre == genreSelected) {
+    if (genreSelected == "all") {
+      var context = details[i];
+      var html = template(context);
+      $(".cds-container").append(html);
+    }else if (genreSelected == genre) {
       var context = details[i];
       var html = template(context);
       $(".cds-container").append(html);
