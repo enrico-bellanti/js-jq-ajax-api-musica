@@ -67,23 +67,3 @@ function selectAlbum(details, genreSelected) {
   }
 
 }
-
-// function selectAlbum(details, genreSelected) {
-//   // copia il template
-//   var source = $("#cd-template").html();
-//   var template = Handlebars.compile(source);
-//   // ottieni le info contenute nella API e inseriscile nel template
-//   for (var i = 0; i < details.length; i++) {
-//     var genre = details[i].genre.toLowerCase();
-//     if (genreSelected == "all") {
-//       var context = details[i];
-//       var html = template(context);
-//       $(".cds-container").append(html);
-//     }else if (genreSelected == genre) {
-//       var context = details[i];
-//       var html = template(context);
-//       $(".cds-container").append(html);
-//     }
-//   }
-//
-// }
