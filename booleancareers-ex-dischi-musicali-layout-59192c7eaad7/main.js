@@ -12,20 +12,13 @@
 
 
 $(document).ready(function() {
-  // copia il template
-  var source = $("#cd-template").html();
-  var template = Handlebars.compile(source);
 
 	$.ajax({
     "url": "https://flynn.boolean.careers/exercises/api/array/music",
     "method": "GET",
     "success": function(data, stato) {
       var infoCd = data.response;
-      for (var i = 0; i < infoCd.length; i++) {
-        var context = infoCd[i];
-        var html = template(context);
-        $(".cds-container").append(html);
-      }
+      insertCdInfos(infoCd);
     },
     "error": function(richiesta, stato, errori) {
       alery("Attenzione errore");
@@ -43,6 +36,15 @@ $(document).ready(function() {
 //     "year": "1988"
 // },
 
-// function getCdDetails() {
-//
-// }
+function insertCdInfos(details) {
+  // copia il template
+  var source = $("#cd-template").html();
+  var template = Handlebars.compile(source);
+  // ottieni le info contenute nella API e inseriscile nel template
+  for (var i = 0; i < details.length; i++) {
+    var context = details[i];
+    var html = template(context);
+    $(".cds-container").append(html);
+  }
+
+}
