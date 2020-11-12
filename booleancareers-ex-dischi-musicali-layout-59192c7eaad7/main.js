@@ -27,13 +27,14 @@ $(document).ready(function() {
     }
   });
 
+
+
   // al click richiedi all'API solo gli album che hanno il genere selezionato
   $("#select_genre option").click(function() {
     // rimuovi i template della selezione precedente
     $(".cds-container .cd").remove();
     // salvo il valore genere selzionato in una variabile
     var genreAlbum = $(this).val();
-    console.log(genreAlbum);
 
   	$.ajax({
       "url": "https://flynn.boolean.careers/exercises/api/array/music",
